@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  test-selenium:
+    container_name: node_selenium_chrome
+    build:  
+      context: .
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - selenium_network 
+networks:
+  selenium_network:
+    driver: bridge
+  
