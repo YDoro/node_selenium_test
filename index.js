@@ -9,6 +9,7 @@ app.get('/postalcode/:code', async (req, res) => {
         const response = await postalCodeFinder(code);
         res.send({ address: response });
     } catch (e) {
+        console.error(e);
         res.status(404).send({ message: 'postal code not found' });
     }
 });
