@@ -1,0 +1,3 @@
+[] - change app from JS to TS 
+[] - add more services
+[] - separate selenium container from app container or improve the existing one
