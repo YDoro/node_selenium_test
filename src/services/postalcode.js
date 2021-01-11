@@ -9,7 +9,7 @@ module.exports = async function (cep) {
     await page.findElement(By.name("query")).sendKeys(cep, Key.RETURN);
     const line = await page.findElement(By.className('box_text'))
     const content = await (await line.findElement(By.css('h2'))).getText()
-    const contentArray = content.split(',');
+    const contentArray = content.split(', ');
     return {
         street: contentArray[0],
         neighborhood: contentArray[1],
