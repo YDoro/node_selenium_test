@@ -1,0 +1,3 @@
+NODE_ENV=Develop
+APP_NAME=Selenium Services
+PORT=3001
