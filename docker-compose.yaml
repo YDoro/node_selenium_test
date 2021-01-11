@@ -2,13 +2,15 @@ version: "3.3"
 services:
   test-selenium:
     container_name: node_selenium_chrome
-    build:  
+    build:
       context: .
+    ports:
+      - 3001:3001
     volumes:
       - .:/usr/src/app
     networks:
-      - selenium_network 
+      - selenium_network
+    env_file: .env
 networks:
   selenium_network:
     driver: bridge
-  
