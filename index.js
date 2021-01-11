@@ -1,19 +1,15 @@
-const { Builder, By, Key } = require('selenium-webdriver');
-const chrome = require("selenium-webdriver/chrome");
-const option = new chrome.Options();
-option.addArguments(['--disable-dev-shm-usage']);
-const driver = new Builder().forBrowser("chrome").setChromeOptions(option);
-async function example(){
-    const page = await driver.build();
-    await page.get("http://google.com");
-    await page.findElement(By.name("q")).sendKeys("github ydoro",Key.RETURN);
-    const tilte = await page.getTitle();
-    return tilte;
-        
-}
-example().then((title)=>{
-    console.log(title);
-})
+const express = require('express');
+const postalCodeFinder = require('./src/services/postalcode');
 
+const app = express();
 
-
+app.get('/postalcode/:code', async (req, res) => {
+    const code = req.params.code;
+    try {
+        const response = await postalCodeFinder(code);
+        res.send({ address: response });
+    } catch (e) {
+        res.status(404).send({ message: 'postal code not found' });
+    }
+});
+app.listen(process.env.PORT, console.log(process.env.APP_NAME + ' litening into: ' + process.env.PORT))
